@@ -4,7 +4,7 @@ export default function Container({
     children: React.ReactNode;
 }>) {
     return (
-        <div className="mx-60 my-10">
+        <div className="max-w-[1280px] py-10 flex flex-col gap-10 m-auto">
             {children}
         </div>
     );
