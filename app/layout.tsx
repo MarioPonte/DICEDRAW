@@ -1,9 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
+import localFont from "next/font/local";
 
-const inter = Inter({ subsets: ["latin"] });
+const championsFont = localFont({
+  src: [
+    {
+      path: "../public/fonts/Champions-Bold.ttf",
+    },
+  ],
+  variable: "--font-champions",
+});
 
 export const metadata: Metadata = {
   title: "Champions League Draw Simulator",
@@ -17,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className + " text-white bg-[#010056]"}>
+      <body className={`${championsFont.variable} text-white bg-[#010056]`}>
         {children}
         <Footer />
       </body>
