@@ -5,31 +5,46 @@ import { teams } from "./teams";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useState } from "react";
 
 function sortOpponents(pots: any) {
-  const selectedOpponents: any[] = [];
-  const selectedCountries: { [key: string]: number } = {};
+  const matches:any = []; // Array para armazenar os confrontos
+  const teamsPerPot = pots.flat(); // Juntar todos os potes numa única lista de equipas
+  
+  teamsPerPot.forEach((team: any) => {
+    const opponents = [];
+    const usedTeams = new Set(); // Para evitar equipas repetidas ou do mesmo país
 
-  pots.forEach((pot: any) => {
-    pot.forEach((selTeam: any) => {
-      const canSelectOpponent = (opponent: any) => {
-        if (selTeam.id === opponent.id) return false;
-        if (opponent.country === selTeam.country) return false;
-        if (selectedCountries[opponent.country] && selectedCountries[opponent.country] >= 2) return false;
-        return true;
-      };
+    for (let i = 0; i < pots.length; i++) {
+      // Selecionar 2 adversários de cada pote (exceto do pote da própria equipa)
+      const availableTeams = pots[i].filter(
+        (opponent: any) => 
+          opponent.id !== team.id && // Evitar que a equipa jogue contra si própria
+          opponent.country !== team.country && // Evitar equipas do mesmo país
+          !usedTeams.has(opponent.id) // Evitar equipas repetidas
+      );
 
-      let potOpponents = pot.filter((opponent: any) => canSelectOpponent(opponent));
-      console.log(potOpponents);
+      // Randomizar e escolher 2 equipas disponíveis do pote atual
+      while (opponents.length < (i + 1) * 2 && availableTeams.length > 0) {
+        const randomIndex = Math.floor(Math.random() * availableTeams.length);
+        const chosenOpponent = availableTeams.splice(randomIndex, 1)[0]; // Retira equipa do array
+        opponents.push(chosenOpponent);
+        usedTeams.add(chosenOpponent.id); // Marca equipa como já usada
+      }
+    }
+
+    // Armazenar os confrontos dessa equipa
+    matches.push({
+      team: team.name,
+      opponents: opponents.map((opponent: any) => opponent.name),
     });
   });
 
-  return selectedOpponents;
+  // Exibir os confrontos no console para revisão
+  console.log(matches);
+  return matches;
 }
 
 export default function Home() {
-  const [teamsDraw, setTeamsDraw] = useState<any[]>();
 
   const pot1 = [teams[0], teams[1], teams[2], teams[3], teams[4], teams[5], teams[6], teams[7], teams[8]];
   const pot2 = [teams[9], teams[10], teams[11], teams[12], teams[13], teams[14], teams[15], teams[16], teams[17]];
