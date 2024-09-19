@@ -5,6 +5,9 @@ import { teams } from "./teams";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
 import {
   Select,
   SelectContent,
@@ -12,7 +15,19 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+
+const FormSchema = z.object({
+  team: z.string({ required_error: "Select one club" }),
+})
 
 function sortOpponents(team: any, pots: any) {
   const teamMatches: any = { team: team.name, opponents: [] };
@@ -37,10 +52,18 @@ function sortOpponents(team: any, pots: any) {
 
 export default function Home() {
 
+  const form = useForm<z.infer<typeof FormSchema>>({
+    resolver: zodResolver(FormSchema),
+  })
+
   const pot1 = [teams[0], teams[1], teams[2], teams[3], teams[4], teams[5], teams[6], teams[7], teams[8]];
   const pot2 = [teams[9], teams[10], teams[11], teams[12], teams[13], teams[14], teams[15], teams[16], teams[17]];
   const pot3 = [teams[18], teams[19], teams[20], teams[21], teams[22], teams[23], teams[24], teams[25], teams[26]];
   const pot4 = [teams[27], teams[28], teams[29], teams[30], teams[31], teams[32], teams[33], teams[34], teams[35]];
+
+  function onSubmit(data: z.infer<typeof FormSchema>) {
+    sortOpponents(teams[Number(data.team)], [pot1, pot2, pot3, pot4])
+  }
 
   return (
     <Container>
@@ -51,25 +74,41 @@ export default function Home() {
         <Pot num={3} teams={pot3} />
         <Pot num={4} teams={pot4} />
       </div>
-      <div className="text-center flex flex-col gap-8 items-center">
-        <Select>
-          <SelectTrigger className="bg-[#0a0a61] max-w-96 border-white/50">
-            <SelectValue placeholder="Select one club" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              {teams.map(team => (
-                <SelectItem key={team.id} value={team.name}>{team.name}</SelectItem>
-              ))}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
 
-        <Button className="bg-white text-[#010056] hover:bg-white/95 gap-1" onClick={() => sortOpponents(teams[19], [pot1, pot2, pot3, pot4])}>
-          <Image width={100} height={100} className="h-8 w-8" alt="ucl icon" src="/images/uclLogo.svg" />
-          <span>Draw Opponents</span>
-        </Button>
-      </div>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="text-center flex flex-col gap-8 items-center">
+          <FormField
+            control={form.control}
+            name="team"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Team</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger className="bg-[#0a0a61] max-w-96 border-white/50">
+                      <SelectValue placeholder="Select one club" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectGroup>
+                      {teams.map((team, index) => (
+                        <SelectItem key={team.id} value={index.toString()}>{team.name}</SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <Button type="submit" className="bg-white text-[#010056] hover:bg-white/95 gap-1">
+            <Image width={100} height={100} className="h-8 w-8" alt="ucl icon" src="/images/uclLogo.svg" />
+            <span>Draw Opponents</span>
+          </Button>
+        </form>
+      </Form>
+
     </Container>
   );
 }
