@@ -24,20 +24,23 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { useState } from "react";
+import TeamMatches from "@/components/TeamMatches";
 
 const FormSchema = z.object({
   team: z.string({ required_error: "Select one club" }),
 })
 
-function sortOpponents(team: any, pots: any) {
+// DRAW FOR ONLY ONE TEAM OF COMPETITION
+function sortTeamOpponents(team: any, pots: any) {
   const teamMatches: any = { team: team.name, opponents: [] };
   const selectedCountries: { [key: string]: number } = {};
 
-  // Função auxiliar para verificar se um clube pode ser selecionado
+  // Can opponent be selected
   const canSelectTeam = (opponent: any) => team.id !== opponent.id && opponent.country !== team.country && (selectedCountries[opponent.country] || 0) < 2;
 
-  // Itera sobre cada pote para sortear 2 times
-  pots.forEach((pot: any) => {
+  // Iterate on each pot to draw 2 opponents
+  pots.forEach((pot: Object[]) => {
     const potOpponents = pot.filter(canSelectTeam).sort(() => 0.5 - Math.random());
     potOpponents.slice(0, 2).forEach((opponent: any) => {
       teamMatches.opponents.push(opponent);
@@ -45,24 +48,65 @@ function sortOpponents(team: any, pots: any) {
     });
   });
 
-  console.log(teamMatches);
-
   return teamMatches;
 }
 
+
+
+
+
+
+
+// DRAW FOR ALL THE TEAMS OF COMPETITION
+function drawLeagueStage(pots: any) {
+
+  // Go through each pot
+  pots.forEach((pot: any) => {
+    let potTeamsAvailable = pot;
+
+    // Go through each team of each pot
+    pot.forEach((team: any) => {
+      const teamHomeMatches: any = { team: team.name, opponents: [] };
+      console.log(potTeamsAvailable)
+      console.log(teamHomeMatches)
+    });
+  });
+
+  const selectedCountries: { [key: string]: number } = {};
+
+  // Can opponent be selected
+  // const canSelectTeam = (opponent: any) => allTeams.id !== opponent.id && opponent.country !== allTeams.country && (selectedCountries[opponent.country] || 0) < 2;
+
+  /* Iterate on each pot to draw 2 opponents
+  pots.forEach((pot: Object[]) => {
+    const potOpponents = pot.filter(canSelectTeam).sort(() => 0.5 - Math.random());
+    potOpponents.slice(0, 2).forEach((opponent: any) => {
+      teamMatches.opponents.push(opponent);
+      selectedCountries[opponent.country] = (selectedCountries[opponent.country] || 0) + 1;
+    });
+  }); */
+
+}
+
 export default function Home() {
+
+  const [oneTeamDraw, setOneTeamDraw] = useState(null)
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   })
 
+  // SETTINGS FOR POTS
   const pot1 = [teams[0], teams[1], teams[2], teams[3], teams[4], teams[5], teams[6], teams[7], teams[8]];
   const pot2 = [teams[9], teams[10], teams[11], teams[12], teams[13], teams[14], teams[15], teams[16], teams[17]];
   const pot3 = [teams[18], teams[19], teams[20], teams[21], teams[22], teams[23], teams[24], teams[25], teams[26]];
   const pot4 = [teams[27], teams[28], teams[29], teams[30], teams[31], teams[32], teams[33], teams[34], teams[35]];
+  const pots = [pot1, pot2, pot3, pot4];
+
+  drawLeagueStage(pots);
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    sortOpponents(teams[Number(data.team)], [pot1, pot2, pot3, pot4])
+    setOneTeamDraw(sortTeamOpponents(teams[Number(data.team)], pots))
   }
 
   return (
@@ -108,6 +152,10 @@ export default function Home() {
           </Button>
         </form>
       </Form>
+
+      {oneTeamDraw !== null && (
+        <TeamMatches draw={oneTeamDraw} />
+      )}
 
     </Container>
   );
