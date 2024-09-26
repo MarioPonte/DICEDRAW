@@ -26,69 +26,12 @@ import {
 } from "@/components/ui/form";
 import { useState } from "react";
 import TeamMatches from "@/components/TeamMatches";
+import { drawTeamOpponents } from "@/draw/drawTeamOpponents";
+import { drawLeagueStage } from "@/draw/drawLeagueStage";
 
 const FormSchema = z.object({
   team: z.string({ required_error: "Select one club" }),
 })
-
-// DRAW FOR ONLY ONE TEAM OF COMPETITION
-function drawTeamOpponents(team: any, pots: any) {
-  const teamMatches: any = { team: team.name, opponents: [] };
-  const selectedCountries: { [key: string]: number } = {};
-
-  // Can opponent be selected
-  const canSelectTeam = (opponent: any) => team.id !== opponent.id && opponent.country !== team.country && (selectedCountries[opponent.country] || 0) < 2;
-
-  // Iterate on each pot to draw 2 opponents
-  pots.forEach((pot: Object[]) => {
-    const potOpponents = pot.filter(canSelectTeam).sort(() => 0.5 - Math.random());
-    potOpponents.slice(0, 2).forEach((opponent: any) => {
-      teamMatches.opponents.push(opponent);
-      selectedCountries[opponent.country] = (selectedCountries[opponent.country] || 0) + 1;
-    });
-  });
-
-  return teamMatches;
-}
-
-
-
-
-
-
-
-// DRAW FOR ALL THE TEAMS OF COMPETITION
-function drawLeagueStage(pots: any) {
-
-  // Collect data of the draw for all teams
-  let drawData: any = [];
-
-  // Go through each pot
-  pots.forEach((pot: any) => {
-    let potTeamsAvailable = pot;
-
-    // Go through each team of each pot
-    pot.forEach((team: any) => {
-      const teamHomeMatches: any = { team: team.name, opponents: [] };
-
-      const selectedCountries: { [key: string]: number } = {};
-      // Can opponent be selected
-      const canSelectTeam = (opponent: any) => team.id !== opponent.id && opponent.country !== team.country && (selectedCountries[opponent.country] || 0) < 2;
-
-      // draw home opponent
-      const potOpponents = potTeamsAvailable.filter(canSelectTeam).sort(() => 0.5 - Math.random());
-      potOpponents.slice(0, 1).forEach((opponent: any) => {
-        teamHomeMatches.opponents.push(opponent);
-        selectedCountries[opponent.country] = (selectedCountries[opponent.country] || 0) + 1;
-      });
-
-      drawData.push(teamHomeMatches);
-    });
-  });
-
-  console.log(drawData);
-
-}
 
 export default function Home() {
 
