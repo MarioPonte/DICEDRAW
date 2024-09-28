@@ -1,7 +1,7 @@
 export const teams = [
     {
         "id": 1,
-        "name": "Manchester City",
+        "name": "Man City",
         "logo": "https://upload.wikimedia.org/wikipedia/pt/0/02/Manchester_City_Football_Club.png",
         "country": "ENG",
     },
@@ -13,7 +13,7 @@ export const teams = [
     },
     {
         "id": 3,
-        "name": "Real Madrid C.F.",
+        "name": "Real Madrid CF",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/50051.png",
         "country": "ESP",
     },
@@ -67,7 +67,7 @@ export const teams = [
     },
     {
         "id": 12,
-        "name": "Atalanta BC",
+        "name": "Atalanta",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/52816.png",
         "country": "ITA",
     },
@@ -85,13 +85,13 @@ export const teams = [
     },
     {
         "id": 15,
-        "name": "Arsenal FC",
+        "name": "Arsenal",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/52280.png",
         "country": "ENG",
     },
     {
         "id": 16,
-        "name": "Club Brugge KV",
+        "name": "Club Brugge",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/50043.png",
         "country": "BEL",
     },
@@ -127,7 +127,7 @@ export const teams = [
     },
     {
         "id": 22,
-        "name": "GNK Dinamo",
+        "name": "Dinamo Zagreb",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/50164.png",
         "country": "CRO",
     },
@@ -151,7 +151,7 @@ export const teams = [
     },
     {
         "id": 26,
-        "name": "BSC Young Boys",
+        "name": "Young Boys",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/50031.png",
         "country": "SUI",
     },
@@ -163,13 +163,13 @@ export const teams = [
     },
     {
         "id": 28,
-        "name": "ŠK Slovan Bratislava",
+        "name": "Slovan Bratislava",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/52797.png",
         "country": "SVK",
     },
     {
         "id": 29,
-        "name": "AS Monaco",
+        "name": "Monaco",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/50023.png",
         "country": "FRA",
     },
@@ -187,7 +187,7 @@ export const teams = [
     },
     {
         "id": 32,
-        "name": "Bologna FC 1909",
+        "name": "Bologna",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/52969.png",
         "country": "ITA",
     },
@@ -199,19 +199,19 @@ export const teams = [
     },
     {
         "id": 34,
-        "name": "VfB Stuttgart",
+        "name": "Stuttgart",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/50107.png",
         "country": "GER",
     },
     {
         "id": 35,
-        "name": "SK Sturm Graz",
+        "name": "Sturm Graz",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/50111.png",
         "country": "AUT",
     },
     {
         "id": 36,
-        "name": "Stade Brestois 29",
+        "name": "Stade Brestois",
         "logo": "https://img.uefa.com/imgml/TP/teams/logos/50x50/2601306.png",
         "country": "FRA",
     },

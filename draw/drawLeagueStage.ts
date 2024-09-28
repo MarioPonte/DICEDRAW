@@ -8,28 +8,50 @@ export function drawLeagueStage(pots: any) {
     pots.forEach((pot: any) => {
         let potTeamsAvailable = [...pot]; // Make a copy to manipulate available teams
 
-        // Go through each team of each pot
-        pot.forEach((team: any) => {
+        // Recursive function to draw matches for each team
+        const drawMatchesForTeam = (teamIndex: number): boolean => {
+            if (teamIndex >= pot.length) return true; // All teams have been processed
+
+            const team = pot[teamIndex];
             const teamHomeMatches: any = { team: team.name, opponents: [] };
 
             const selectedCountries: { [key: string]: number } = {};
-            // Can opponent be selected
-            const canSelectTeam = (opponent: any) => team.id !== opponent.id && opponent.country !== team.country && (selectedCountries[opponent.country] || 0) < 2;
+            const canSelectTeam = (opponent: any) =>
+                team.id !== opponent.id &&
+                opponent.country !== team.country &&
+                (selectedCountries[opponent.country] || 0) < 2 &&
+                !drawData.some((entry: any) => entry.opponents.includes(opponent));
 
-            // draw home opponent
+            // Shuffle potential opponents to add randomness
             const potOpponents = potTeamsAvailable.filter(canSelectTeam).sort(() => 0.5 - Math.random());
-            potOpponents.slice(0, 1).forEach((opponent: any) => {
+
+            for (const opponent of potOpponents) {
                 teamHomeMatches.opponents.push(opponent);
                 selectedCountries[opponent.country] = (selectedCountries[opponent.country] || 0) + 1;
 
+                // Temporarily remove the opponent
                 const index = potTeamsAvailable.indexOf(opponent);
                 if (index > -1) potTeamsAvailable.splice(index, 1);
-            });
 
-            drawData.push(teamHomeMatches);
-        });
+                drawData.push(teamHomeMatches);
+
+                // Recursive call for the next team
+                if (drawMatchesForTeam(teamIndex + 1)) {
+                    return true;
+                }
+
+                // Backtrack if it didn't work out
+                drawData.pop();
+                potTeamsAvailable.splice(index, 0, opponent);
+                selectedCountries[opponent.country]--;
+                teamHomeMatches.opponents.pop();
+            }
+
+            return false; // If no valid opponent was found, return false
+        };
+
+        drawMatchesForTeam(0);
     });
 
     console.log(drawData);
-
 }
