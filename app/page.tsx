@@ -4,7 +4,6 @@ import Pot from "@/components/Pot";
 import { teams } from "./teams";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -74,7 +73,7 @@ export default function Home() {
                 <FormLabel>Team</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
-                    <SelectTrigger className="bg-[#0a0a61] max-w-96 border-white/50">
+                    <SelectTrigger>
                       <SelectValue placeholder="Select one club" />
                     </SelectTrigger>
                   </FormControl>
@@ -91,10 +90,7 @@ export default function Home() {
             )}
           />
 
-          <Button type="submit" className="bg-white text-[#010056] hover:bg-white/95 gap-1">
-            <Image width={100} height={100} className="h-8 w-8" alt="ucl icon" src="/images/uclLogo.svg" />
-            <span>Draw Opponents</span>
-          </Button>
+          <Button type="submit">Draw Opponents</Button>
         </form>
       </Form>
 
