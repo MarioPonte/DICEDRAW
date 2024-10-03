@@ -4,8 +4,17 @@ export function drawLeagueStage(pots: any) {
     // Collect data of the draw for all teams
     let drawData: any = [];
 
+    // Check if a pair of teams has already played against each other
+    const hasPlayedBefore = (team: any, opponent: any): boolean => {
+        return drawData.some((match: any) => 
+            (match.team === team.name && match.opponents.includes(opponent)) ||
+            (match.team === opponent.name && match.opponents.includes(team))
+        );
+    };
+
     // Go through each pot
     pots.forEach((pot: any) => {
+
         let potTeamsAvailable = [...pot]; // Make a copy to manipulate available teams
 
         // Recursive function to draw matches for each team
@@ -20,6 +29,7 @@ export function drawLeagueStage(pots: any) {
                 team.id !== opponent.id &&
                 opponent.country !== team.country &&
                 (selectedCountries[opponent.country] || 0) < 2 &&
+                !hasPlayedBefore(team, opponent) && // Ensure they haven't played before
                 !drawData.some((entry: any) => entry.opponents.includes(opponent));
 
             // Shuffle potential opponents to add randomness
@@ -36,9 +46,7 @@ export function drawLeagueStage(pots: any) {
                 drawData.push(teamHomeMatches);
 
                 // Recursive call for the next team
-                if (drawMatchesForTeam(teamIndex + 1)) {
-                    return true;
-                }
+                if (drawMatchesForTeam(teamIndex + 1)) return true;
 
                 // Backtrack if it didn't work out
                 drawData.pop();
