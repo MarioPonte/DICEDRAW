@@ -80,7 +80,12 @@ export default function Home() {
                   <SelectContent>
                     <SelectGroup>
                       {teams.map((team, index) => (
-                        <SelectItem key={team.id} value={index.toString()}>{team.name}</SelectItem>
+                        <SelectItem key={team.id} value={index.toString()}>
+                          <div className="flex items-center gap-1">
+                            <img src={`https://flagcdn.com/${team.country}.svg`} alt={`${team.country} Flag`} className="w-4 h-3 border" />
+                            <span>{team.name}</span>
+                          </div>
+                        </SelectItem>
                       ))}
                     </SelectGroup>
                   </SelectContent>

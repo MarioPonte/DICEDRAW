@@ -11,8 +11,8 @@ const TeamMatches: React.FC<TeamMatchesProps> = ({ draw }) => {
             <div className="grid grid-cols-2 gap-1 p-1">
                 {draw.opponents.map((opponent: any) => (
                     <div key={opponent.id} className="flex items-center gap-2 p-1">
+                        <img src={`https://flagcdn.com/${opponent.country}.svg`} alt={`${opponent.country} Flag`} className="w-4 h-3 border" />
                         <p>{opponent.name}</p>
-                        <span className="text-white/25 text-xs">{opponent.country}</span>
                     </div>
                 ))}
             </div>
