@@ -1,23 +1,26 @@
 type teamMatches = {
-    team: string, 
-    home: string[],  // Adversários para jogos em casa
-    away: string[]   // Adversários para jogos fora
+    team: string,
+    home: string[],
+    away: string[]
 }
 
 // Função para sortear os jogos de todas as equipas da competição
 export function drawLeagueStage(pots: any) {
-
-    // Inicializar dados do sorteio para todas as equipas
     let drawData: teamMatches[] = [];
 
     pots.forEach((pot: any) => {
-        pot.forEach((team: any) => {
-            // Criar um objeto para cada equipa e inicializar com arrays vazios para jogos
-            drawData.push({
-                team: team.name,
-                home: [],
-                away: []
-            });
+        pot.forEach((team: any) => drawData.push({ team: team, home: [], away: [] }));
+    });
+
+    pots.forEach((pot: any) => {
+        let potTeamsAvailable = [...pot];
+
+        drawData.forEach((data: any) => {
+            const canSelectTeam = (opponent: any) => data.team.id !== opponent.id && data.team.country !== opponent.country
+            const potOpponents = potTeamsAvailable.filter(canSelectTeam).sort(() => Math.random() - 0.5);
+
+            data.home.push(potOpponents[0]);
+            data.away.push(potOpponents[1]);
         });
     });
 
