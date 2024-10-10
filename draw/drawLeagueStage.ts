@@ -14,9 +14,12 @@ export function drawLeagueStage(pots: any) {
 
     pots.forEach((pot: any) => {
         let potTeamsAvailable = [...pot];
+        const selectedCountries: { [key: string]: number } = {};
 
         drawData.forEach((data: any) => {
-            const canSelectTeam = (opponent: any) => data.team.id !== opponent.id && data.team.country !== opponent.country
+            
+
+            const canSelectTeam = (opponent: any) => data.team.id !== opponent.id && data.team.country !== opponent.country && (selectedCountries[opponent.country] || 0) < 2
             const potOpponents = potTeamsAvailable.filter(canSelectTeam).sort(() => Math.random() - 0.5);
 
             data.home.push(potOpponents[0]);
