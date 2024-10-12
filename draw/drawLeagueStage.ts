@@ -1,31 +1,70 @@
+type Team = {
+    id: number;
+    name: string;
+    country: string;
+};
+
 type teamMatches = {
-    team: string,
-    home: string[],
-    away: string[]
-}
+    team: string;
+    home: string[];
+    away: string[];
+};
 
 // Função para sortear os jogos de todas as equipas da competição
-export function drawLeagueStage(pots: any) {
+export function drawLeagueStage(pots: any): teamMatches[] | null {
     let drawData: teamMatches[] = [];
 
+    // Inicializamos o array com as equipas e confrontos vazios
     pots.forEach((pot: any) => {
-        pot.forEach((team: any) => drawData.push({ team: team, home: [], away: [] }));
+        pot.forEach((team: any) => drawData.push({ team: team.name, home: [], away: [] }));
     });
 
-    pots.forEach((pot: any) => {
-        let potTeamsAvailable = [...pot];
-        const selectedCountries: { [key: string]: number } = {};
+    const pot1TeamsAvailable = [...pots[0]];
 
-        drawData.forEach((data: any) => {
-            
+    // Função de backtracking
+    const backtrack = (teamIndex: number): boolean => {
+        // Se todas as equipas já têm adversários, o sorteio foi concluído
+        if (teamIndex >= pots[0].length) return true;
 
-            const canSelectTeam = (opponent: any) => data.team.id !== opponent.id && data.team.country !== opponent.country && (selectedCountries[opponent.country] || 0) < 2
-            const potOpponents = potTeamsAvailable.filter(canSelectTeam).sort(() => Math.random() - 0.5);
+        const potTeam = pots[0][teamIndex];
+        const selectedCountries: { [key: string]: number } = {}; // Para controlar o limite de países
 
-            data.home.push(potOpponents[0]);
-            data.away.push(potOpponents[1]);
-        });
-    });
+        const canSelectTeam = (opponent: Team) =>
+            potTeam.id !== opponent.id &&
+            potTeam.country !== opponent.country &&
+            (selectedCountries[opponent.country] || 0) < 2;
+
+        const potOpponents = pot1TeamsAvailable.filter(canSelectTeam).sort(() => Math.random() - 0.5);
+
+        for (const opponent of potOpponents) {
+            // Tenta adicionar o adversário
+            drawData[potTeam.id - 1].home.push(opponent);
+            drawData[opponent.id - 1].away.push(potTeam);
+
+            // Remove o oponente da lista de disponíveis
+            const index = pot1TeamsAvailable.indexOf(opponent);
+            if (index > -1) pot1TeamsAvailable.splice(index, 1);
+
+            // Chamada recursiva para a próxima equipa
+            if (backtrack(teamIndex + 1)) {
+                return true;
+            }
+
+            // Se falhar, desfazemos a atribuição e continuamos
+            drawData[potTeam.id - 1].home.pop();
+            drawData[opponent.id - 1].away.pop();
+            pot1TeamsAvailable.splice(index, 0, opponent);
+        }
+
+        // Se nenhum adversário válido foi encontrado, retornamos falso para voltar atrás
+        return false;
+    };
+
+    if (!backtrack(0)) {
+        console.log("Não foi possível encontrar um sorteio válido.");
+        return null;
+    }
 
     console.log(drawData);
+    return drawData;
 }
