@@ -35,6 +35,7 @@ const FormSchema = z.object({
 export default function Home() {
 
   const [oneTeamDraw, setOneTeamDraw] = useState(null)
+  const [leagueStageDraw, setLeagueStageDraw] = useState<any | null>(null)
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -47,7 +48,7 @@ export default function Home() {
   const pot4 = [teams[27], teams[28], teams[29], teams[30], teams[31], teams[32], teams[33], teams[34], teams[35]];
   const pots = [pot1, pot2, pot3, pot4];
 
-  drawLeagueStage(pots);
+  //drawLeagueStage(pots);
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     setOneTeamDraw(drawTeamOpponents(teams[Number(data.team)], pots))
@@ -101,6 +102,39 @@ export default function Home() {
 
       {oneTeamDraw !== null && (
         <TeamMatches draw={oneTeamDraw} />
+      )}
+
+      <Button type="button" onClick={() => setLeagueStageDraw(drawLeagueStage(pots))}>Draw League Stage</Button>
+      {leagueStageDraw !== null && (
+        <div className="flex flex-col gap-6">
+          {leagueStageDraw.map((data: any) => (
+            <div key={data.team} className="flex flex-col gap-2">
+              <div className="flex gap-2 items-center">
+                <span className="text-xl font-semibold">{data.team}</span>
+              </div>
+              <div className="flex gap-2">
+                <div className="border p-2 w-full">
+                  <p className="font-medium">HOME</p>
+                  {data.home.map((opponent: any) => (
+                    <div key={opponent.id} className="flex items-center gap-2">
+                      <img src={`https://flagcdn.com/${opponent.country}.svg`} alt={`${opponent.country} Flag`} className="w-4 h-3 border" />
+                      <span className="text-sm">{opponent.name}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="border p-2 w-full">
+                  <p className="font-medium">AWAY</p>
+                  {data.away.map((opponent: any) => (
+                    <div key={opponent.id} className="flex items-center gap-2">
+                      <img src={`https://flagcdn.com/${opponent.country}.svg`} alt={`${opponent.country} Flag`} className="w-4 h-3 border" />
+                      <span className="text-sm">{opponent.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       )}
 
     </Container>
