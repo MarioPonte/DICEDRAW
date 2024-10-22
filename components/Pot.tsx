@@ -7,7 +7,7 @@ interface PotProps {
 
 const Pot: React.FC<PotProps> = ({ num, teams }) => {
     return (
-        <Card>
+        <Card className="w-full">
             <p className="text-lg font-medium border-b p-1">Pot {num}</p>
             <div className="flex flex-col gap-1 p-1">
                 {teams.map((team: any) => (

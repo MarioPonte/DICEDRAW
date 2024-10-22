@@ -27,6 +27,7 @@ import { useState } from "react";
 import TeamMatches from "@/components/TeamMatches";
 import { drawTeamOpponents } from "@/draw/drawTeamOpponents";
 import { drawLeagueStage } from "@/draw/drawLeagueStage";
+import TeamLeagueMatches from "@/components/TeamLeagueMatches";
 
 const FormSchema = z.object({
   team: z.string({ required_error: "Select one club" }),
@@ -57,7 +58,7 @@ export default function Home() {
   return (
     <Container>
       <h1 className="text-center text-2xl font-champions">League Phase Draw Simulator 2024/2025</h1>
-      <div className="flex justify-between gap-8">
+      <div className="flex justify-between gap-10">
         <Pot num={1} teams={pot1} />
         <Pot num={2} teams={pot2} />
         <Pot num={3} teams={pot3} />
@@ -100,42 +101,10 @@ export default function Home() {
         </form>
       </Form>
 
-      {oneTeamDraw !== null && (
-        <TeamMatches draw={oneTeamDraw} />
-      )}
+      {oneTeamDraw !== null && <TeamMatches draw={oneTeamDraw} />}
 
       <Button type="button" onClick={() => setLeagueStageDraw(drawLeagueStage(pots))}>Draw League Stage</Button>
-      {leagueStageDraw !== null && (
-        <div className="flex flex-col gap-6">
-          {leagueStageDraw.map((data: any) => (
-            <div key={data.team} className="flex flex-col gap-2">
-              <div className="flex gap-2 items-center">
-                <span className="text-xl font-semibold">{data.team}</span>
-              </div>
-              <div className="flex gap-2">
-                <div className="border p-2 w-full">
-                  <p className="font-medium">HOME</p>
-                  {data.home.map((opponent: any) => (
-                    <div key={opponent.id} className="flex items-center gap-2">
-                      <img src={`https://flagcdn.com/${opponent.country}.svg`} alt={`${opponent.country} Flag`} className="w-4 h-3 border" />
-                      <span className="text-sm">{opponent.name}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="border p-2 w-full">
-                  <p className="font-medium">AWAY</p>
-                  {data.away.map((opponent: any) => (
-                    <div key={opponent.id} className="flex items-center gap-2">
-                      <img src={`https://flagcdn.com/${opponent.country}.svg`} alt={`${opponent.country} Flag`} className="w-4 h-3 border" />
-                      <span className="text-sm">{opponent.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      {leagueStageDraw !== null && <TeamLeagueMatches drawData={leagueStageDraw} />}
 
     </Container>
   );

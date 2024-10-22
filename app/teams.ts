@@ -6,7 +6,7 @@ export const teams = [
     },
     {
         "id": 2,
-        "name": "FC Bayern München",
+        "name": "Bayern München",
         "country": "de",
     },
     {
@@ -26,7 +26,7 @@ export const teams = [
     },
     {
         "id": 6,
-        "name": "FC Internazionale Milano",
+        "name": "Internazionale Milano",
         "country": "it",
     },
     {
@@ -46,7 +46,7 @@ export const teams = [
     },
     {
         "id": 10,
-        "name": "Bayer 04 Leverkusen",
+        "name": "Bayer Leverkusen",
         "country": "de",
     },
     {
@@ -81,7 +81,7 @@ export const teams = [
     },
     {
         "id": 17,
-        "name": "FC Shakhtar Donetsk",
+        "name": "Shakhtar Donetsk",
         "country": "ua",
     },
     {
@@ -121,7 +121,7 @@ export const teams = [
     },
     {
         "id": 25,
-        "name": "FK Crvena Zvezda",
+        "name": "Crvena Zvezda",
         "country": "rs",
     },
     {
@@ -131,7 +131,7 @@ export const teams = [
     },
     {
         "id": 27,
-        "name": "Celtic FC",
+        "name": "Celtic",
         "country": "gb-sct",
     },
     {
@@ -146,12 +146,12 @@ export const teams = [
     },
     {
         "id": 30,
-        "name": "AC Sparta Praha",
+        "name": "Sparta Praha",
         "country": "cz",
     },
     {
         "id": 31,
-        "name": "Aston Villa FC",
+        "name": "Aston Villa",
         "country": "gb-eng",
     },
     {
