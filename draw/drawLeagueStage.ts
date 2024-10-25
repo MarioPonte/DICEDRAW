@@ -51,22 +51,22 @@ function attemptDraw(pots: any): teamMatches[] | null {
         const canSelectTeam = (opponent: Team) =>
             potTeam.id !== opponent.id &&
             potTeam.country !== opponent.country &&
-            (drawData[potTeam.id - 1].selectedCountries[opponent.country] || 0) < 2 &&
-            (drawData[opponent.id - 1].selectedCountries[potTeam.country] || 0) < 2 &&
+            (drawData[potTeam.id].selectedCountries[opponent.country] || 0) < 2 &&
+            (drawData[opponent.id].selectedCountries[potTeam.country] || 0) < 2 &&
             !hasPlayedBefore(potTeam, opponent);
 
         const potOpponents = potTeamsAvailable.filter(canSelectTeam).sort(() => Math.random() - 0.5);
 
         for (const opponent of potOpponents) {
-            const opponentData = drawData[opponent.id - 1]; // Dados do adversário
+            const opponentData = drawData[opponent.id]; // Dados do adversário
 
             // Atualizamos os contadores de países para ambos os times
-            drawData[potTeam.id - 1].selectedCountries[opponent.country] = (drawData[potTeam.id - 1].selectedCountries[opponent.country] || 0) + 1;
+            drawData[potTeam.id].selectedCountries[opponent.country] = (drawData[potTeam.id].selectedCountries[opponent.country] || 0) + 1;
             opponentData.selectedCountries[potTeam.country] = (opponentData.selectedCountries[potTeam.country] || 0) + 1;
 
             // Tenta adicionar o adversário
-            drawData[potTeam.id - 1].home.push(opponent);
-            drawData[opponent.id - 1].away.push(potTeam);
+            drawData[potTeam.id].home.push(opponent);
+            drawData[opponent.id].away.push(potTeam);
 
             // Remove o oponente da lista de disponíveis
             const index = potTeamsAvailable.indexOf(opponent);
@@ -76,8 +76,8 @@ function attemptDraw(pots: any): teamMatches[] | null {
             if (backtrack(teamIndex + 1, pot, potTeamsAvailable)) return true;
 
             // Se falhar, desfazemos a atribuição e continuamos
-            drawData[potTeam.id - 1].home.pop();
-            drawData[opponent.id - 1].away.pop();
+            drawData[potTeam.id].home.pop();
+            drawData[opponent.id].away.pop();
             potTeamsAvailable.splice(index, 0, opponent);
         }
 
