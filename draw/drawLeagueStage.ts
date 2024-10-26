@@ -25,7 +25,7 @@ function attemptDraw(pots: any): teamMatches[] | null {
 
     // Inicializamos o array com as equipas e confrontos vazios
     pots.forEach((pot: any) => {
-        pot.forEach((team: any) => drawData.push({ team: team.name, home: [], away: [], selectedCountries: {} }));
+        pot.forEach((team: any) => drawData[team.id] = { team: team.name, home: [], away: [], selectedCountries: {} });
     });
 
     let pot1TeamsAvailable = [[...pots[0]], [...pots[0]], [...pots[0]], [...pots[0]]];
