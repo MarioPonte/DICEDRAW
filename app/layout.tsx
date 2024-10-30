@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Champions League Draw Simulator",
+  title: "DICEDRAW",
   description: "Champions League Draw Simulator",
 };
 

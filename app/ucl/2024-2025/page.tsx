@@ -1,12 +1,12 @@
 "use client";
 
 import Pot from "@/components/Pot";
-import { teams } from "./teams";
+import { teams } from "@/app/teams";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import {
   Select,
   SelectContent,
@@ -24,17 +24,21 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import TeamMatches from "@/components/TeamMatches";
 import { drawTeamOpponents } from "@/draw/drawTeamOpponents";
 import { drawLeagueStage } from "@/draw/drawLeagueStage";
 import TeamLeagueMatches from "@/components/TeamLeagueMatches";
+import SeasonSelect from "@/components/ui/season-select";
 
 const FormSchema = z.object({
   team: z.string({ required_error: "Select one club" }),
 })
 
-export default function Home() {
+export default function Page() {
 
+  const router = useRouter();
+  const [season, setSeason] = useState("2024-2025")
   const [oneTeamDraw, setOneTeamDraw] = useState(null)
   const [leagueStageDraw, setLeagueStageDraw] = useState<any | null>(null)
 
@@ -49,7 +53,10 @@ export default function Home() {
   const pot4 = [teams[27], teams[28], teams[29], teams[30], teams[31], teams[32], teams[33], teams[34], teams[35]];
   const pots = [pot1, pot2, pot3, pot4];
 
-  //drawLeagueStage(pots);
+  const handleSeasonChange = (selSeason: string) => {
+    setSeason(selSeason);
+    router.push(`/ucl/${selSeason}`);
+  };
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     setOneTeamDraw(drawTeamOpponents(teams[Number(data.team)], pots))
@@ -57,6 +64,8 @@ export default function Home() {
 
   return (
     <Container>
+      <SeasonSelect season={season} onSeasonChange={handleSeasonChange} />
+
       <div className="flex justify-between gap-10">
         <Pot num={1} teams={pot1} />
         <Pot num={2} teams={pot2} />

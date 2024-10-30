@@ -57,7 +57,6 @@ export default function Page() {
 
     return (
         <Container>
-            <h1 className="text-center text-2xl font-champions">League Phase Draw Simulator</h1>
             <div className="flex justify-between gap-10">
                 <Pot num={1} teams={pot1} />
                 <Pot num={2} teams={pot2} />

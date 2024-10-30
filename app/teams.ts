@@ -360,4 +360,39 @@ export const teams = [
         "name": "Elfsborg",
         "country": "se",
     },
+    {
+        "id": 72,
+        "name": "Sevilla",
+        "country": "es",
+    },
+    {
+        "id": 73,
+        "name": "Napoli",
+        "country": "it",
+    },
+    {
+        "id": 74,
+        "name": "København",
+        "country": "dk",
+    },
+    {
+        "id": 75,
+        "name": "New Castle",
+        "country": "gb-eng",
+    },
+    {
+        "id": 76,
+        "name": "Union Berlin",
+        "country": "de",
+    },
+    {
+        "id": 77,
+        "name": "Antwerp",
+        "country": "be",
+    },
+    {
+        "id": 78,
+        "name": "Lens",
+        "country": "fr",
+    },
 ]
