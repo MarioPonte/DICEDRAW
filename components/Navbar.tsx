@@ -9,9 +9,9 @@ export default function Navbar() {
         <div>
             <div className="border-b py-2 px-2">
                 <div className="flex gap-1 items-center justify-between">
-                    <div className="flex gap-1">
-                        <Image width={100} height={100} className="h-5 w-5" alt="ucl icon" src="/images/uclLogo.svg" />
-                        <span className="text-sm font-light">Champions League Draw Simulator</span>
+                    <div className="flex gap-1 items-center">
+                        <Image src="/images/logo.svg" alt="logo" width={100} height={100} className="w-8 h-8" />
+                        <span className="text-sm font-light">DICEDRAW</span>
                     </div>
                     <div>
                         <ThemeButton />
@@ -21,7 +21,7 @@ export default function Navbar() {
 
             <div className="flex gap-4 border-b py-2 px-2 text-sm">
                 <Link href="/">Champions League 24/25</Link>
-                <Link href="/uel-24-25">Europa League 24/25</Link>
+                <Link href="/uel/2024-2025">Europa League 24/25</Link>
             </div>
         </div>
     );

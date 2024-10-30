@@ -1,7 +1,7 @@
 "use client";
 
 import Pot from "@/components/Pot";
-import { teams } from "../teams";
+import { teams } from "../../teams";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod"
