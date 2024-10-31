@@ -6,11 +6,15 @@ import Container from "@/components/Container";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import SeasonSelect from "@/components/ui/season-select";
+import { drawGroupStage } from "@/draw/drawGroupStage";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 export default function Page() {
 
   const router = useRouter();
   const [season, setSeason] = useState("2023-2024")
+  const [groupStageDraw, setGroupStageDraw] = useState<any | undefined>(undefined)
 
   // SETTINGS FOR POTS
   const pot1 = [teams[0], teams[72], teams[8], teams[73], teams[1], teams[3], teams[13], teams[18]];
@@ -28,11 +32,43 @@ export default function Page() {
     <Container>
       <SeasonSelect season={season} onSeasonChange={handleSeasonChange} />
 
-      <div className="flex justify-between gap-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-4 md:gap-10 mx-2">
         <Pot num={1} teams={pot1} />
         <Pot num={2} teams={pot2} />
         <Pot num={3} teams={pot3} />
         <Pot num={4} teams={pot4} />
+      </div>
+
+      <Button type="button" onClick={() => setGroupStageDraw(drawGroupStage(pots))}>Draw Group Stage</Button>
+
+      <div className="grid grid-cols-4 justify-between gap-10 mx-2">
+        {groupStageDraw !== undefined && groupStageDraw.redGroups.map((group: any) => (
+          <Card key={group.name} className="w-full">
+            <p className="text-md md:text-lg font-medium border-b p-1">{group.name}</p>
+            <div className="flex flex-col gap-1 p-1">
+              {group.teams.map((team: any) => (
+                <div key={team.id} className="flex items-center gap-2 p-1">
+                  <img src={`https://flagcdn.com/${team.country}.svg`} alt={`${team.country} Flag`} className="w-4 h-3 border" />
+                  <span className="text-xs md:text-sm">{team.name}</span>
+                </div>
+              ))}
+            </div>
+          </Card>
+        ))}
+
+        {groupStageDraw !== undefined && groupStageDraw.blueGroups.map((group: any) => (
+          <Card key={group.name} className="w-full">
+            <p className="text-md md:text-lg font-medium border-b p-1">{group.name}</p>
+            <div className="flex flex-col gap-1 p-1">
+              {group.teams.map((team: any) => (
+                <div key={team.id} className="flex items-center gap-2 p-1">
+                  <img src={`https://flagcdn.com/${team.country}.svg`} alt={`${team.country} Flag`} className="w-4 h-3 border" />
+                  <span className="text-xs md:text-sm">{team.name}</span>
+                </div>
+              ))}
+            </div>
+          </Card>
+        ))}
       </div>
 
     </Container>

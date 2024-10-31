@@ -66,7 +66,7 @@ export default function Page() {
     <Container>
       <SeasonSelect season={season} onSeasonChange={handleSeasonChange} />
 
-      <div className="flex justify-between gap-10">
+      <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-4 md:gap-10 mx-2">
         <Pot num={1} teams={pot1} />
         <Pot num={2} teams={pot2} />
         <Pot num={3} teams={pot3} />

@@ -16,7 +16,7 @@ interface SeasonSelectProps {
 
 const SeasonSelect: React.FC<SeasonSelectProps> = ({ season, onSeasonChange }) => {
   return (
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center mx-2">
         <span className="text-sm">Season</span>
         <Select defaultValue={season} onValueChange={onSeasonChange}>
           <SelectTrigger className="w-[124px] h-8 focus:ring-1">
