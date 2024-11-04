@@ -111,7 +111,7 @@ export default function Page() {
 
       {oneTeamDraw !== null && <TeamMatches draw={oneTeamDraw} />}
 
-      <Button type="button" onClick={() => setLeagueStageDraw(drawLeagueStage(pots))}>Draw League Stage</Button>
+      <Button type="button" className="mx-2" onClick={() => setLeagueStageDraw(drawLeagueStage(pots))}>Draw League Stage</Button>
       {leagueStageDraw !== null && <TeamLeagueMatches drawData={leagueStageDraw} />}
 
     </Container>

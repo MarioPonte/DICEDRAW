@@ -1,73 +1,23 @@
 export function drawGroupStage(pots: any) {
-    let groups = {
-        redGroups: [
-            {name: "Group A", teams: []},
-            {name: "Group B", teams: []},
-            {name: "Group C", teams: []},
-            {name: "Group D", teams: []}
-        ],
-        blueGroups: [
-            {name: "Group E", teams: []},
-            {name: "Group F", teams: []},
-            {name: "Group G", teams: []},
-            {name: "Group H", teams: []}
-        ]
+    const draw = (pots: any, nbrOfGroups: number) => {
+        const teams = pots.flatMap((p: any, i: any) => p.map((x: any) => ({ ...x, pot: i + 1 })))
+            .sort(({ country: a }: any, { country: b }: any) => a < b ? - 1 : a > b ? 1 : 0)
+        const groups = Array.from({ length: nbrOfGroups }, _ => [])
+        for (let i = 0; i < teams.length; i++) {
+            const team = teams[i]
+            const candidateGroups: any = groups.filter(
+                group => group.length < teams.length / nbrOfGroups
+                    && group.every((member: any) => member.country !== team.country && member.pot !== team.pot)
+            )
+            if (candidateGroups.length < 1) return draw(pots, nbrOfGroups) // try over
+            candidateGroups[Math.floor(Math.random() * candidateGroups.length)].push(team)
+        }
+        return groups
     }
 
-    let pot1TeamsAvailable = [...pots[0]];
-    let pot2TeamsAvailable = [...pots[1]];
-    let pot3TeamsAvailable = [...pots[2]];
-    let pot4TeamsAvailable = [...pots[3]];
+    let drawData = draw(pots, 8);
 
-    groups.redGroups.forEach((group: any) => {
-        pot1TeamsAvailable.sort(() => Math.random() - 0.5);
-        group.teams.push(pot1TeamsAvailable[0]);
-        pot1TeamsAvailable.splice(0,1);
-    });
+    console.log(drawData);
 
-    groups.blueGroups.forEach((group: any) => {
-        pot1TeamsAvailable.sort(() => Math.random() - 0.5);
-        group.teams.push(pot1TeamsAvailable[0]);
-        pot1TeamsAvailable.splice(0,1);
-    });
-
-    groups.redGroups.forEach((group: any) => {
-        pot2TeamsAvailable.sort(() => Math.random() - 0.5);
-        group.teams.push(pot2TeamsAvailable[0]);
-        pot2TeamsAvailable.splice(0,1);
-    });
-
-    groups.blueGroups.forEach((group: any) => {
-        pot2TeamsAvailable.sort(() => Math.random() - 0.5);
-        group.teams.push(pot2TeamsAvailable[0]);
-        pot2TeamsAvailable.splice(0,1);
-    });
-
-    groups.redGroups.forEach((group: any) => {
-        pot3TeamsAvailable.sort(() => Math.random() - 0.5);
-        group.teams.push(pot3TeamsAvailable[0]);
-        pot3TeamsAvailable.splice(0,1);
-    });
-
-    groups.blueGroups.forEach((group: any) => {
-        pot3TeamsAvailable.sort(() => Math.random() - 0.5);
-        group.teams.push(pot3TeamsAvailable[0]);
-        pot3TeamsAvailable.splice(0,1);
-    });
-
-    groups.redGroups.forEach((group: any) => {
-        pot4TeamsAvailable.sort(() => Math.random() - 0.5);
-        group.teams.push(pot4TeamsAvailable[0]);
-        pot4TeamsAvailable.splice(0,1);
-    });
-
-    groups.blueGroups.forEach((group: any) => {
-        pot4TeamsAvailable.sort(() => Math.random() - 0.5);
-        group.teams.push(pot4TeamsAvailable[0]);
-        pot4TeamsAvailable.splice(0,1);
-    });
-
-    console.log(groups);
-
-    return groups;
+    return drawData;
 }
