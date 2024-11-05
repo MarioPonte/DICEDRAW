@@ -41,7 +41,7 @@ export default function Page() {
 
       <Button type="button" onClick={() => setGroupStageDraw(drawGroupStage(pots))}>Draw Group Stage</Button>
 
-      <div className="grid grid-cols-4 justify-between gap-10 mx-2">
+      <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-4 md:gap-10 mx-2">
         {groupStageDraw !== undefined && groupStageDraw.map((group: any) => (
           <Card key={groupStageDraw.indexOf(group)} className="w-full">
             <p className="text-md md:text-lg font-medium border-b p-1">Group</p>
