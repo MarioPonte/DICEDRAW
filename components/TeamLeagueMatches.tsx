@@ -12,7 +12,7 @@ const TeamLeagueMatches: React.FC<TeamLeagueMatchesProps> = ({ drawData }) => {
               <div className="flex gap-2 items-center">
                 <span className="text-lg md:text-xl font-semibold">{data.team}</span>
               </div>
-              <div className="flex gap-2">
+              <div className="flex gap-2 md:gap-10">
                 <div className="border rounded-md p-2 w-full">
                   <p className="font-medium text-sm md:text-base">HOME</p>
                   {data.home.map((opponent: any) => (
