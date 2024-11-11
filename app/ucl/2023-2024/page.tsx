@@ -39,7 +39,7 @@ export default function Page() {
         <Pot num={4} teams={pot4} />
       </div>
 
-      <Button type="button" onClick={() => setGroupStageDraw(drawGroupStage(pots))}>Draw Group Stage</Button>
+      <Button type="button" className="mx-2" onClick={() => setGroupStageDraw(drawGroupStage(pots))}>Draw Group Stage</Button>
 
       <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-4 md:gap-10 mx-2">
         {groupStageDraw !== undefined && groupStageDraw.map((group: any) => (

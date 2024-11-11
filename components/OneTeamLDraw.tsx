@@ -1,6 +1,5 @@
 "use client";
 
-import { teams } from "@/app/teams";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -36,12 +35,15 @@ interface OneTeamLDrawProps {
 const OneTeamLDraw: React.FC<OneTeamLDrawProps> = ({ pots }) => {
     const [oneTeamDraw, setOneTeamDraw] = useState(null);
 
+    let tournamentTeams: any = [];
+    pots.forEach((pot: any) => pot.forEach((team: any) => tournamentTeams.push(team)));
+
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
     })
 
     function onSubmit(data: z.infer<typeof FormSchema>) {
-        setOneTeamDraw(drawTeamOpponents(teams[Number(data.team)], pots))
+        setOneTeamDraw(drawTeamOpponents(tournamentTeams[Number(data.team)], pots))
     }
 
     return (
@@ -62,7 +64,7 @@ const OneTeamLDraw: React.FC<OneTeamLDrawProps> = ({ pots }) => {
                                     </FormControl>
                                     <SelectContent>
                                         <SelectGroup>
-                                            {teams.map((team, index) => (
+                                            {tournamentTeams.map((team: any, index: any) => (
                                                 <SelectItem key={team.id} value={index.toString()}>
                                                     <div className="flex items-center gap-1">
                                                         <img src={`https://flagcdn.com/${team.country}.svg`} alt={`${team.country} Flag`} className="w-4 h-3 border" />
@@ -77,7 +79,6 @@ const OneTeamLDraw: React.FC<OneTeamLDrawProps> = ({ pots }) => {
                             </FormItem>
                         )}
                     />
-
                     <Button type="submit">Draw Opponents</Button>
                 </form>
             </Form>

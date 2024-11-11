@@ -42,7 +42,7 @@ export default function Home() {
 
       <OneTeamLDraw pots={pots} />
 
-      <Button type="button" onClick={() => setLeagueStageDraw(drawLeagueStage(pots))}>Draw League Stage</Button>
+      <Button type="button" className="mx-2" onClick={() => setLeagueStageDraw(drawLeagueStage(pots))}>Draw League Stage</Button>
       {leagueStageDraw !== null && <TeamLeagueMatches drawData={leagueStageDraw} />}
 
     </Container>

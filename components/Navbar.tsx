@@ -3,11 +3,11 @@
 import Image from "next/image";
 import { ThemeButton } from "./ThemeButton";
 import Link from "next/link";
-import { LogoGitHub, LogoMario } from "@/app/SVGFiles";
+import { LogoGitHub } from "@/app/SVGFiles";
 
 export default function Navbar() {
     return (
-        <div>
+        <nav>
             <div className="border-b py-2 px-2">
                 <div className="flex gap-1 items-center justify-between">
                     <div className="flex gap-1 items-center">
@@ -27,6 +27,6 @@ export default function Navbar() {
                 <Link href="/ucl/2024-2025">Champions League</Link>
                 <Link href="/uel/2024-2025">Europa League</Link>
             </div>
-        </div>
+        </nav>
     );
 }
