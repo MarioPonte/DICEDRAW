@@ -10,26 +10,26 @@ import {
 } from "@/components/ui/select";
 
 interface SeasonSelectProps {
-    season: string;
-    onSeasonChange: any;
+  selSeason: string;
+  onSeasonChange: any;
+  seasons: string[];
 }
 
-const SeasonSelect: React.FC<SeasonSelectProps> = ({ season, onSeasonChange }) => {
+const SeasonSelect: React.FC<SeasonSelectProps> = ({ selSeason, onSeasonChange, seasons }) => {
   return (
-      <div className="flex gap-2 items-center mx-2">
-        <span className="text-sm">Season</span>
-        <Select defaultValue={season} onValueChange={onSeasonChange}>
-          <SelectTrigger className="w-[124px] h-8 focus:ring-1">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="2024-2025">2024-2025</SelectItem>
-              <SelectItem value="2023-2024">2023-2024</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
+    <div className="flex gap-2 items-center mx-2">
+      <span className="text-sm">Season</span>
+      <Select defaultValue={selSeason} onValueChange={onSeasonChange}>
+        <SelectTrigger className="w-[124px] h-8 focus:ring-1">
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            {seasons.map((season: any) => <SelectItem key={season} value={season}>{season}</SelectItem>)}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
   );
 }
 

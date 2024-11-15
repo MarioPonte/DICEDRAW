@@ -395,4 +395,37 @@ export const teams = [
         "name": "Lens",
         "country": "fr",
     },
+    {
+        "id": 79,
+        "name": "Chelsea",
+        "country": "gb-eng",
+    },
+]
+
+export const conmebolTeams = [
+    {
+        "id": 0,
+        "name": "Palmeiras",
+        "country": "br",
+    },
+    {
+        "id": 1,
+        "name": "Flamengo",
+        "country": "br",
+    },
+    {
+        "id": 2,
+        "name": "Fluminense",
+        "country": "br",
+    },
+    {
+        "id": 3,
+        "name": "River Plate",
+        "country": "ar",
+    },
+    {
+        "id": 4,
+        "name": "Boca Juniors",
+        "country": "ar",
+    },
 ]
