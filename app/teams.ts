@@ -403,29 +403,16 @@ export const teams = [
 ]
 
 export const conmebolTeams = [
-    {
-        "id": 0,
-        "name": "Palmeiras",
-        "country": "br",
-    },
-    {
-        "id": 1,
-        "name": "Flamengo",
-        "country": "br",
-    },
-    {
-        "id": 2,
-        "name": "Fluminense",
-        "country": "br",
-    },
-    {
-        "id": 3,
-        "name": "River Plate",
-        "country": "ar",
-    },
-    {
-        "id": 4,
-        "name": "Boca Juniors",
-        "country": "ar",
-    },
+    { "id": "0-conmebol", "name": "Palmeiras", "country": "br", },
+    { "id": "1-conmebol", "name": "Flamengo", "country": "br", },
+    { "id": "2-conmebol", "name": "Fluminense", "country": "br", },
+    { "id": "3-conmebol", "name": "River Plate", "country": "ar", },
+    { "id": "4-conmebol", "name": "Boca Juniors", "country": "ar", },
+]
+
+export const afcTeams = [
+    { "id": "0-afc", "name": "Al-Hilal", "country": "sa", },
+    { "id": "1-afc", "name": "Urawa Reds", "country": "jp", },
+    { "id": "2-afc", "name": "Al Ain", "country": "ae", },
+    { "id": "3-afc", "name": "Ulsan HD", "country": "kr", },
 ]
