@@ -1,7 +1,7 @@
 "use client";
 
 import Pot from "@/components/Pot";
-import { afcTeams, conmebolTeams, teams } from "@/app/teams";
+import { afcTeams, cafTeams, concacafTeams, conmebolTeams, ofcTeams, teams } from "@/app/teams";
 import Container from "@/components/Container";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -19,8 +19,8 @@ export default function Page() {
   // SETTINGS FOR POTS
   const pot1 = [teams[79], teams[2], teams[0], teams[1], afcTeams[0], conmebolTeams[0], conmebolTeams[1], conmebolTeams[2]];
   const pot2 = [teams[6], teams[10], teams[12], teams[22], conmebolTeams[3], teams[5], teams[38], teams[13],];
-  const pot3 = [conmebolTeams[4], teams[3], afcTeams[1], afcTeams[2], afcTeams[3], teams[42], teams[24], teams[74]];
-  const pot4 = [teams[25], teams[45], teams[55], teams[26], teams[75], teams[76], teams[77], teams[78]];
+  const pot3 = [conmebolTeams[4], teams[3], afcTeams[1], afcTeams[2], afcTeams[3], cafTeams[0], cafTeams[1], cafTeams[2]];
+  const pot4 = [cafTeams[3], concacafTeams[0], concacafTeams[1], concacafTeams[2], concacafTeams[3], concacafTeams[4], ofcTeams[0], teams[78]];
   const pots = [pot1, pot2, pot3, pot4];
 
   const handleSeasonChange = (selSeason: string) => {
