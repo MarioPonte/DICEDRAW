@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import SeasonSelect from "@/components/ui/season-select";
 import { drawGroupStage } from "@/draw/drawGroupStage";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import GroupStage from "@/components/GroupStage";
 
 export default function Page() {
 
@@ -28,9 +28,6 @@ export default function Page() {
     router.push(`/ucl/${selSeason}`);
   };
 
-  // Função para converter índice em letras de A a H
-  const getGroupLetter = (index: number) => String.fromCharCode(65 + index);
-
   return (
     <Container>
       <SeasonSelect selSeason={season} onSeasonChange={handleSeasonChange} seasons={["2024-2025", "2023-2024"]} />
@@ -44,21 +41,7 @@ export default function Page() {
 
       <Button type="button" className="mx-2" onClick={() => setGroupStageDraw(drawGroupStage(pots))}>Draw Group Stage</Button>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-4 md:gap-10 mx-2">
-        {groupStageDraw !== undefined && groupStageDraw.map((group: any, index: number) => (
-          <Card key={groupStageDraw.indexOf(group)} className="w-full">
-            <p className="text-md md:text-lg font-medium border-b p-1">Group {getGroupLetter(index)}</p>
-            <div className="flex flex-col gap-1 p-1">
-              {group.map((team: any) => (
-                <div key={team.id} className="flex items-center gap-2 p-1">
-                  <img src={`https://flagcdn.com/${team.country}.svg`} alt={`${team.country} Flag`} className="w-4 h-3 border" />
-                  <span className="text-xs md:text-sm">{team.name}</span>
-                </div>
-              ))}
-            </div>
-          </Card>
-        ))}
-      </div>
+      {groupStageDraw !== undefined && <GroupStage drawData={groupStageDraw} />}
 
     </Container>
   );
