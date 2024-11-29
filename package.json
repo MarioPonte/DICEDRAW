@@ -16,6 +16,9 @@
     "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "dom-to-image": "^2.6.0",
+    "file-saver": "^2.0.5",
     "lucide-react": "^0.437.0",
     "next": "^14.2.12",
     "next-themes": "^0.3.0",
@@ -27,6 +30,8 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/dom-to-image": "^2.6.7",
+    "@types/file-saver": "^2.0.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

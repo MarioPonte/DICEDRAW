@@ -1,17 +1,22 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
+import { useRef } from "react";
+import DownloadBtn from "./DownloadBtn";
 
 interface GroupStageProps {
-    drawData: any;
+  drawData: any;
 }
 
 const GroupStage: React.FC<GroupStageProps> = ({ drawData }) => {
   // Função para converter índice em letras de A a H
   const getGroupLetter = (index: number) => String.fromCharCode(65 + index);
 
+  const groupsContanerRef = useRef(null);
+
   return (
-      <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-4 md:gap-10 mx-2">
+    <div className="flex flex-col gap-10 px-2">
+      <div ref={groupsContanerRef} className="grid grid-cols-2 md:grid-cols-4 justify-between gap-4 md:gap-10">
         {drawData !== undefined && drawData.map((group: any, index: number) => (
           <Card key={drawData.indexOf(group)} className="w-full">
             <p className="text-md md:text-lg font-medium border-b p-1">Group {getGroupLetter(index)}</p>
@@ -26,6 +31,8 @@ const GroupStage: React.FC<GroupStageProps> = ({ drawData }) => {
           </Card>
         ))}
       </div>
+      <DownloadBtn completed={true} groupsElement={groupsContanerRef} />
+    </div>
   );
 }
 
