@@ -20,7 +20,7 @@ export default function Page() {
   const pot1 = [teams[79], teams[2], teams[0], teams[1], afcTeams[0], conmebolTeams[0], conmebolTeams[1], conmebolTeams[2]];
   const pot2 = [teams[6], teams[10], teams[12], teams[22], conmebolTeams[3], teams[5], teams[38], teams[13],];
   const pot3 = [conmebolTeams[4], teams[3], afcTeams[1], afcTeams[2], afcTeams[3], cafTeams[0], cafTeams[1], cafTeams[2]];
-  const pot4 = [cafTeams[3], concacafTeams[0], concacafTeams[1], concacafTeams[2], concacafTeams[3], concacafTeams[4], ofcTeams[0], teams[78]];
+  const pot4 = [cafTeams[3], concacafTeams[0], concacafTeams[1], concacafTeams[2], concacafTeams[3], concacafTeams[4], ofcTeams[0], conmebolTeams[5]];
   const pots = [pot1, pot2, pot3, pot4];
 
   const handleSeasonChange = (selSeason: string) => {

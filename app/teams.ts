@@ -87,6 +87,7 @@ export const conmebolTeams = [
     { "id": "2-conmebol", "name": "Fluminense", "country": "br", },
     { "id": "3-conmebol", "name": "River Plate", "country": "ar", },
     { "id": "4-conmebol", "name": "Boca Juniors", "country": "ar", },
+    { "id": "5-conmebol", "name": "Botafogo", "country": "br", },
 ]
 
 export const afcTeams = [
