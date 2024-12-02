@@ -1,7 +1,7 @@
 "use client";
 
 import Pot from "@/components/Pot";
-import { teams } from "@/app/teams";
+import { uefaTeams } from "@/app/teams";
 import Container from "@/components/Container";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -17,10 +17,10 @@ export default function Page() {
   const [groupStageDraw, setGroupStageDraw] = useState<any | undefined>(undefined)
 
   // SETTINGS FOR POTS
-  const pot1 = [teams[0], teams[72], teams[8], teams[73], teams[1], teams[3], teams[13], teams[18]];
-  const pot2 = [teams[2], teams[37], teams[5], teams[6], teams[10], teams[7], teams[38], teams[14]];
-  const pot3 = [teams[16], teams[22], teams[17], teams[47], teams[20], teams[42], teams[24], teams[74]];
-  const pot4 = [teams[25], teams[45], teams[55], teams[26], teams[75], teams[76], teams[77], teams[78]];
+  const pot1 = [uefaTeams[0], uefaTeams[72], uefaTeams[8], uefaTeams[73], uefaTeams[1], uefaTeams[3], uefaTeams[13], uefaTeams[18]];
+  const pot2 = [uefaTeams[2], uefaTeams[37], uefaTeams[5], uefaTeams[6], uefaTeams[10], uefaTeams[7], uefaTeams[38], uefaTeams[14]];
+  const pot3 = [uefaTeams[16], uefaTeams[22], uefaTeams[17], uefaTeams[47], uefaTeams[20], uefaTeams[42], uefaTeams[24], uefaTeams[74]];
+  const pot4 = [uefaTeams[25], uefaTeams[45], uefaTeams[55], uefaTeams[26], uefaTeams[75], uefaTeams[76], uefaTeams[77], uefaTeams[78]];
   const pots = [pot1, pot2, pot3, pot4];
 
   const handleSeasonChange = (selSeason: string) => {

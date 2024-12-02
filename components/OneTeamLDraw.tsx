@@ -23,6 +23,7 @@ import {
 import { useState } from "react";
 import TeamMatches from "@/components/TeamMatches";
 import { drawTeamOpponents } from "@/draw/drawTeamOpponents";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 const FormSchema = z.object({
     team: z.string({ required_error: "Select one club" }),
@@ -47,44 +48,55 @@ const OneTeamLDraw: React.FC<OneTeamLDrawProps> = ({ pots }) => {
     }
 
     return (
-        <>
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="text-center flex flex-col gap-8 items-center">
-                    <FormField
-                        control={form.control}
-                        name="team"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Team</FormLabel>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <FormControl>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Select one club" />
-                                        </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                        <SelectGroup>
-                                            {tournamentTeams.map((team: any, index: any) => (
-                                                <SelectItem key={team.id} value={index.toString()}>
-                                                    <div className="flex items-center gap-1">
-                                                        <img src={`https://flagcdn.com/${team.country}.svg`} alt={`${team.country} Flag`} className="w-4 h-3 border" />
-                                                        <span>{team.name}</span>
-                                                    </div>
-                                                </SelectItem>
-                                            ))}
-                                        </SelectGroup>
-                                    </SelectContent>
-                                </Select>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <Button type="submit">Draw Opponents</Button>
-                </form>
-            </Form>
+        <div className="m-auto">
+            <Card className="w-fit mx-2">
+                <CardHeader>
+                    <CardTitle>
+                        One team draw
+                    </CardTitle>
+                    <CardDescription>
+                        Draw for one specific team.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-wrap gap-4 ">
+                            <FormField
+                                control={form.control}
+                                name="team"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                            <FormControl>
+                                                <SelectTrigger className="w-64">
+                                                    <SelectValue placeholder="Select one team" />
+                                                </SelectTrigger>
+                                            </FormControl>
+                                            <SelectContent>
+                                                <SelectGroup>
+                                                    {tournamentTeams.map((team: any, index: any) => (
+                                                        <SelectItem key={team.id} value={index.toString()}>
+                                                            <div className="flex items-center gap-1">
+                                                                <img src={`https://flagcdn.com/${team.country}.svg`} alt={`${team.country} Flag`} className="w-4 h-3 border" />
+                                                                <span>{team.name}</span>
+                                                            </div>
+                                                        </SelectItem>
+                                                    ))}
+                                                </SelectGroup>
+                                            </SelectContent>
+                                        </Select>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <Button type="submit">Draw Opponents</Button>
+                        </form>
+                    </Form>
+                </CardContent>
+            </Card>
 
             {oneTeamDraw !== null && <TeamMatches draw={oneTeamDraw} />}
-        </>
+        </div>
     );
 }
 

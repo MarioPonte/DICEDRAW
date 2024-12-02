@@ -1,4 +1,4 @@
-export const teams = [
+export const uefaTeams = [
     { "id": 0, "name": "Man City", "country": "gb-eng", },
     { "id": 1, "name": "Bayern München", "country": "de", },
     { "id": 2, "name": "Real Madrid", "country": "es", },

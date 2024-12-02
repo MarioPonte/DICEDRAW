@@ -1,7 +1,7 @@
 "use client";
 
 import Pot from "@/components/Pot";
-import { teams } from "@/app/teams";
+import { uefaTeams } from "@/app/teams";
 import Container from "@/components/Container";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -18,10 +18,10 @@ export default function Page() {
   const [leagueStageDraw, setLeagueStageDraw] = useState<any | null>(null);
 
   // SETTINGS FOR POTS
-  const pot1 = [teams[0], teams[1], teams[2], teams[3], teams[4], teams[5], teams[6], teams[7], teams[8]];
-  const pot2 = [teams[9], teams[10], teams[11], teams[12], teams[13], teams[14], teams[15], teams[16], teams[17]];
-  const pot3 = [teams[18], teams[19], teams[20], teams[21], teams[22], teams[23], teams[24], teams[25], teams[26]];
-  const pot4 = [teams[27], teams[28], teams[29], teams[30], teams[31], teams[32], teams[33], teams[34], teams[35]];
+  const pot1 = [uefaTeams[0], uefaTeams[1], uefaTeams[2], uefaTeams[3], uefaTeams[4], uefaTeams[5], uefaTeams[6], uefaTeams[7], uefaTeams[8]];
+  const pot2 = [uefaTeams[9], uefaTeams[10], uefaTeams[11], uefaTeams[12], uefaTeams[13], uefaTeams[14], uefaTeams[15], uefaTeams[16], uefaTeams[17]];
+  const pot3 = [uefaTeams[18], uefaTeams[19], uefaTeams[20], uefaTeams[21], uefaTeams[22], uefaTeams[23], uefaTeams[24], uefaTeams[25], uefaTeams[26]];
+  const pot4 = [uefaTeams[27], uefaTeams[28], uefaTeams[29], uefaTeams[30], uefaTeams[31], uefaTeams[32], uefaTeams[33], uefaTeams[34], uefaTeams[35]];
   const pots = [pot1, pot2, pot3, pot4];
 
   const handleSeasonChange = (selSeason: string) => {

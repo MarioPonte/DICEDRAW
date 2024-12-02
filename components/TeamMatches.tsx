@@ -6,7 +6,7 @@ interface TeamMatchesProps {
 
 const TeamMatches: React.FC<TeamMatchesProps> = ({ draw }) => {
     return (
-        <Card>
+        <Card className="mx-2">
             <p className="text-lg font-medium border-b p-1">{draw.team}</p>
             <div className="grid grid-cols-2 gap-1 p-1">
                 {draw.opponents.map((opponent: any) => (
