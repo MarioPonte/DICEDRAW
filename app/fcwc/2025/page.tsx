@@ -1,27 +1,20 @@
 "use client";
 
 import Pot from "@/components/Pot";
-import { afcTeams, cafTeams, concacafTeams, conmebolTeams, ofcTeams, uefaTeams } from "@/app/teams";
 import Container from "@/components/Container";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import SeasonSelect from "@/components/ui/season-select";
-import { drawGroupStage } from "@/draw/drawGroupStage";
+import { drawFCWCGroupStage } from "@/draw/drawFCWCGroupStage";
 import { Button } from "@/components/ui/button";
 import GroupStage from "@/components/GroupStage";
+import { pots } from "./pots";
 
 export default function Page() {
 
   const router = useRouter();
   const [season, setSeason] = useState("2025")
   const [groupStageDraw, setGroupStageDraw] = useState<any | undefined>(undefined)
-
-  // SETTINGS FOR POTS
-  const pot1 = [uefaTeams[0], uefaTeams[2], uefaTeams[1], uefaTeams[3], conmebolTeams[1], conmebolTeams[0], conmebolTeams[3], conmebolTeams[2]];
-  const pot2 = [uefaTeams[79], uefaTeams[6], uefaTeams[5], uefaTeams[38], uefaTeams[10], uefaTeams[13], uefaTeams[12], uefaTeams[22]];
-  const pot3 = [afcTeams[0], afcTeams[3], cafTeams[0], cafTeams[1], concacafTeams[0], concacafTeams[2], conmebolTeams[4], conmebolTeams[5]];
-  const pot4 = [afcTeams[1], afcTeams[2], cafTeams[2], cafTeams[3], concacafTeams[3], concacafTeams[1], ofcTeams[0], concacafTeams[4]];
-  const pots = [pot1, pot2, pot3, pot4];
 
   const handleSeasonChange = (selSeason: string) => {
     setSeason(selSeason);
@@ -33,13 +26,13 @@ export default function Page() {
       <SeasonSelect selSeason={season} onSeasonChange={handleSeasonChange} seasons={["2025"]} />
 
       <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-4 md:gap-10 mx-2">
-        <Pot num={1} teams={pot1} />
-        <Pot num={2} teams={pot2} />
-        <Pot num={3} teams={pot3} />
-        <Pot num={4} teams={pot4} />
+        <Pot num={1} teams={pots[0]} />
+        <Pot num={2} teams={pots[1]} />
+        <Pot num={3} teams={pots[2]} />
+        <Pot num={4} teams={pots[3]} />
       </div>
 
-      <Button type="button" className="mx-2" onClick={() => setGroupStageDraw(drawGroupStage(pots))}>Draw Group Stage</Button>
+      <Button type="button" className="mx-2" onClick={() => setGroupStageDraw(drawFCWCGroupStage(pots))}>Draw Group Stage</Button>
 
       {groupStageDraw !== undefined && <GroupStage drawData={groupStageDraw} />}
 

@@ -74,7 +74,7 @@ const OneTeamLDraw: React.FC<OneTeamLDrawProps> = ({ pots }) => {
                                             </FormControl>
                                             <SelectContent>
                                                 <SelectGroup>
-                                                    {tournamentTeams.map((team: any, index: any) => (
+                                                    {tournamentTeams.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((team: any, index: any) => (
                                                         <SelectItem key={team.id} value={index.toString()}>
                                                             <div className="flex items-center gap-1">
                                                                 <img src={`https://flagcdn.com/${team.country}.svg`} alt={`${team.country} Flag`} className="w-4 h-3 border" />

@@ -5,7 +5,7 @@ interface Team {
 
 type Pots = Team[][];
 
-export function drawGroupStage(pots: Pots) {
+export function drawFCWCGroupStage(pots: Pots) {
     const RED_GROUPS = [0, 1, 2, 3];
     const BLUE_GROUPS = [4, 5, 6, 7];
     
