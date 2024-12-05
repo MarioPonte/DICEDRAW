@@ -6,7 +6,7 @@ type teamMatches = {
 };
 
 // Function to draw the matches of all the teams in the competition
-export function drawLeagueStage(pots: any): teamMatches[] | null {
+export function drawLeagueStage(pots: object[][]): teamMatches[] | null {
     let drawData: teamMatches[] | null = null;
 
     while (!drawData) drawData = attemptDraw(pots);
@@ -14,11 +14,11 @@ export function drawLeagueStage(pots: any): teamMatches[] | null {
     return drawData;
 }
 
-function attemptDraw(pots: any): teamMatches[] | null {
+function attemptDraw(pots: object[][]): teamMatches[] | null {
     let drawData: teamMatches[] = [];
 
     // Initialization of the array with empty teams and matches
-    pots.forEach((pot: any) => pot.forEach((team: any) => drawData[team.id] = { team: team.name, home: [], away: [], selectedCountries: {} }));
+    pots.forEach((pot: object[]) => pot.forEach((team: any) => drawData[team.id] = { team: team.name, home: [], away: [], selectedCountries: {} }));
 
     let pot1TeamsAvailable = [[...pots[0]], [...pots[0]], [...pots[0]], [...pots[0]]];
     let pot2TeamsAvailable = [[...pots[1]], [...pots[1]], [...pots[1]], [...pots[1]]];
