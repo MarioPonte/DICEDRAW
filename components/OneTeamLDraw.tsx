@@ -17,7 +17,6 @@ import {
     FormControl,
     FormField,
     FormItem,
-    FormLabel,
     FormMessage,
 } from "@/components/ui/form";
 import { useState } from "react";
@@ -30,14 +29,20 @@ const FormSchema = z.object({
 })
 
 interface OneTeamLDrawProps {
-    pots: any;
+    pots: object[][];
+}
+
+interface Team { 
+    id: number, 
+    name: string, 
+    country: string 
 }
 
 const OneTeamLDraw: React.FC<OneTeamLDrawProps> = ({ pots }) => {
     const [oneTeamDraw, setOneTeamDraw] = useState(null);
 
     let tournamentTeams: any = [];
-    pots.forEach((pot: any) => pot.forEach((team: any) => tournamentTeams.push(team)));
+    pots.forEach((pot: object[]) => pot.forEach((team: object) => tournamentTeams.push(team)));
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -74,7 +79,7 @@ const OneTeamLDraw: React.FC<OneTeamLDrawProps> = ({ pots }) => {
                                             </FormControl>
                                             <SelectContent>
                                                 <SelectGroup>
-                                                    {tournamentTeams.sort((a: any, b: any) => a.name.localeCompare(b.name)).map((team: any, index: any) => (
+                                                    {tournamentTeams.sort((a: Team, b: Team) => a.name.localeCompare(b.name)).map((team: Team, index: number) => (
                                                         <SelectItem key={team.id} value={index.toString()}>
                                                             <div className="flex items-center gap-1">
                                                                 <img src={`https://flagcdn.com/${team.country}.svg`} alt={`${team.country} Flag`} className="w-4 h-3 border" />
