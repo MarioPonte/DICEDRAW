@@ -9,6 +9,7 @@ import { drawGroupStage } from "@/draw/drawGroupStage";
 import { Button } from "@/components/ui/button";
 import GroupStage from "@/components/GroupStage";
 import { pots } from "./pots";
+import DrawGSCard from "@/components/cards/DrawGSCard";
 
 export default function Page() {
 
@@ -32,7 +33,9 @@ export default function Page() {
         <Pot num={4} teams={pots[3]} />
       </div>
 
-      <Button type="button" className="mx-2" onClick={() => setGroupStageDraw(drawGroupStage(pots))}>Draw Group Stage</Button>
+      <DrawGSCard>
+        <Button type="button" className="w-full" onClick={() => setGroupStageDraw(drawGroupStage(pots))}>Draw Group Stage</Button>
+      </DrawGSCard>
 
       {groupStageDraw !== undefined && <GroupStage drawData={groupStageDraw} />}
 

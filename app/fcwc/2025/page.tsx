@@ -9,7 +9,7 @@ import { drawFCWCGroupStage } from "@/draw/drawFCWCGroupStage";
 import { Button } from "@/components/ui/button";
 import GroupStage from "@/components/GroupStage";
 import { pots } from "./pots";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import DrawGSCard from "@/components/cards/DrawGSCard";
 
 export default function Page() {
 
@@ -33,17 +33,9 @@ export default function Page() {
         <Pot num={4} teams={pots[3]} />
       </div>
 
-      <Card className="mx-2">
-        <CardHeader>
-          <CardTitle>Draw Group Stage</CardTitle>
-          <CardDescription>
-            Simulate the competition groups now! Just click the button.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Button type="button" className="w-full" onClick={() => setGroupStageDraw(drawFCWCGroupStage(pots))}>Draw Group Stage</Button>
-        </CardContent>
-      </Card>
+      <DrawGSCard>
+        <Button type="button" className="w-full" onClick={() => setGroupStageDraw(drawFCWCGroupStage(pots))}>Draw Group Stage</Button>
+      </DrawGSCard>
 
       {groupStageDraw !== undefined && <GroupStage drawData={groupStageDraw} />}
 

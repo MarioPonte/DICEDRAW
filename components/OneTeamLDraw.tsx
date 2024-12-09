@@ -29,7 +29,7 @@ const FormSchema = z.object({
 })
 
 interface OneTeamLDrawProps {
-    pots: object[][];
+    pots: Team[][];
 }
 
 interface Team { 
@@ -41,8 +41,8 @@ interface Team {
 const OneTeamLDraw: React.FC<OneTeamLDrawProps> = ({ pots }) => {
     const [oneTeamDraw, setOneTeamDraw] = useState(null);
 
-    let tournamentTeams: any = [];
-    pots.forEach((pot: object[]) => pot.forEach((team: object) => tournamentTeams.push(team)));
+    let tournamentTeams: Team[] = [];
+    pots.forEach((pot: Team[]) => pot.forEach((team: Team) => tournamentTeams.push(team)));
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
