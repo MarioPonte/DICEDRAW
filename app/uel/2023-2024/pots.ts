@@ -1,0 +1,42 @@
+export const pots = [
+    [
+        { "id": 0, "name": "West Ham", "country": "gb-eng", },
+        { "id": 1, "name": "Liverpool", "country": "gb-eng", }, 
+        { "id": 2, "name": "AS Roma", "country": "it", },
+        { "id": 3, "name": "Ajax", "country": "nl", }, 
+        { "id": 4, "name": "Villarreal", "country": "es", },
+        { "id": 5, "name": "Bayer Leverkusen", "country": "de", },
+        { "id": 6, "name": "Atalanta", "country": "it", },
+        { "id": 7, "name": "Rangers", "country": "gb-sct", },
+    ],
+    [
+        { "id": 8, "name": "Sporting CP", "country": "pt", },
+        { "id": 9, "name": "Slavia Praha", "country": "cz", }, 
+        { "id": 10, "name": "Rennes", "country": "fr", },
+        { "id": 11, "name": "Olympiacos", "country": "gr", },
+        { "id": 12, "name": "Real Betis", "country": "es", },
+        { "id": 13, "name": "LASK", "country": "at", }, 
+        { "id": 14, "name": "Marseille", "country": "fr", }, 
+        { "id": 15, "name": "Qarabağ", "country": "az", },
+    ],
+    [
+        { "id": 16, "name": "Molde", "country": "no", }, 
+        { "id": 17, "name": "Brighton", "country": "gb-eng", }, 
+        { "id": 18, "name": "Sheriff", "country": "md", },
+        { "id": 19, "name": "Union Saint-Gilloise", "country": "be", },
+        { "id": 20, "name": "Freiburg", "country": "de", },
+        { "id": 21, "name": "Sparta Praha", "country": "cz", }, 
+        { "id": 22, "name": "Maccabi Haifa", "country": "il", },
+        { "id": 23, "name": "Sturm Graz", "country": "at", }, 
+    ],
+    [
+        { "id": 24, "name": "Toulouse", "country": "fr", }, 
+        { "id": 25, "name": "AEK Athens", "country": "gr", }, 
+        { "id": 26, "name": "Bačka Topola", "country": "rs", }, 
+        { "id": 27, "name": "Servette", "country": "ch", }, 
+        { "id": 28, "name": "Panathinaikos", "country": "gr", }, 
+        { "id": 29, "name": "Raków", "country": "pl", }, 
+        { "id": 30, "name": "Aris Limassol", "country": "cy", }, 
+        { "id": 31, "name": "Häcken", "country": "se", }, 
+    ]
+]

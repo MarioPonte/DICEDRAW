@@ -24,7 +24,7 @@ export default function Page() {
 
     return (
         <Container>
-            <SeasonSelect selSeason={season} onSeasonChange={handleSeasonChange} seasons={["2024-2025"]} />
+            <SeasonSelect selSeason={season} onSeasonChange={handleSeasonChange} seasons={["2024-2025", "2023-2024"]} />
 
             <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-4 md:gap-10 mx-2">
                 <Pot num={1} teams={pots[0]} />
