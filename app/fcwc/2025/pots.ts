@@ -25,7 +25,7 @@ export const pots = [
         { "id": 18, "name": "Al-Ahly", "country": "eg", "confederation": "CAF" },
         { "id": 19, "name": "Wydad AC", "country": "ma", "confederation": "CAF" },
         { "id": 20, "name": "Monterrey", "country": "mx", "confederation": "CONCACAF" },
-        { "id": 21, "name": "León", "country": "mx", "confederation": "CONCACAF" },
+        { "id": 21, "name": "LAFC", "country": "us", "confederation": "CONCACAF" },
         { "id": 22, "name": "Boca Juniors", "country": "ar", "confederation": "CONMEBOL" },
         { "id": 23, "name": "Botafogo", "country": "br", "confederation": "CONMEBOL" }
     ],
