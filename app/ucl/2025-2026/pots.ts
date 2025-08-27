@@ -28,19 +28,19 @@ export const pots = [
         { "id": 21, "name": "Sporting CP", "country": "pt", },
         { "id": 22, "name": "Olympiacos", "country": "gr", },
         { "id": 23, "name": "Slavia Praha", "country": "cz", },
-        { "id": 24, "name": "Marseille", "country": "fr", },
-        { "id": 25, "name": "Crvena Zvezda", "country": "rs", },
-        { "id": 26, "name": "Young Boys", "country": "ch", },
+        { "id": 24, "name": "Bodø/Glimt", "country": "no", },
+        { "id": 25, "name": "Marseille", "country": "fr", },
+        { "id": 26, "name": "Crvena Zvezda", "country": "rs", }
     ],
     [
-        { "id": 27, "name": "Galatasaray", "country": "tr", },
-        { "id": 28, "name": "Union Saint-Gilloise", "country": "be", },
-        { "id": 29, "name": "Athletic Club", "country": "es", },
-        { "id": 30, "name": "New Castle", "country": "gb-eng", },
-        { "id": 31, "name": "Bologna", "country": "it", },
-        { "id": 32, "name": "Girona FC", "country": "es", },
-        { "id": 33, "name": "Stuttgart", "country": "de", },
-        { "id": 34, "name": "Sturm Graz", "country": "at", },
-        { "id": 35, "name": "Stade Brestois", "country": "fr", },
+        { "id": 27, "name": "Monaco", "country": "fr", },
+        { "id": 28, "name": "Galatasaray", "country": "tr", },
+        { "id": 29, "name": "Union Saint-Gilloise", "country": "be", },
+        { "id": 30, "name": "Qarabağ", "country": "az", },
+        { "id": 31, "name": "Athletic Club", "country": "es", },
+        { "id": 32, "name": "New Castle", "country": "gb-eng", },
+        { "id": 33, "name": "Pafos", "country": "cy", },
+        { "id": 34, "name": "Kairat", "country": "kz", },
+        { "id": 35, "name": "Stuttgart", "country": "de", }
     ]
 ]

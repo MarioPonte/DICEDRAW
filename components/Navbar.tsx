@@ -24,8 +24,8 @@ export default function Navbar() {
             </div>
 
             <div className="flex gap-4 border-b py-2 px-2 text-sm">
-                <Link href="/ucl/2024-2025">Champions League</Link>
-                <Link href="/uel/2024-2025">Europa League</Link>
+                <Link href="/ucl/2025-2026">Champions League</Link>
+                <Link href="/uel/2025-2026">Europa League</Link>
                 <Link href="/fcwc/2025">FIFA Club World Cup</Link>
             </div>
         </nav>

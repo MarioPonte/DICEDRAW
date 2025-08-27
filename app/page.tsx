@@ -9,12 +9,12 @@ import { drawLeagueStage } from "@/draw/drawLeagueStage";
 import TeamLeagueMatches from "@/components/TeamLeagueMatches";
 import SeasonSelect from "@/components/ui/season-select";
 import OneTeamLDraw from "@/components/OneTeamLDraw";
-import { pots } from "./ucl/2024-2025/pots";
+import { pots } from "./ucl/2025-2026/pots";
 
 export default function Page() {
 
   const router = useRouter();
-  const [season, setSeason] = useState("2024-2025");
+  const [season, setSeason] = useState("2025-2026");
   const [leagueStageDraw, setLeagueStageDraw] = useState<object[] | null>(null);
 
   const handleSeasonChange = (selSeason: string) => {
@@ -24,7 +24,7 @@ export default function Page() {
 
   return (
     <Container>
-      <SeasonSelect selSeason={season} onSeasonChange={handleSeasonChange} seasons={["2024-2025", "2023-2024"]} />
+      <SeasonSelect selSeason={season} onSeasonChange={handleSeasonChange} seasons={["2025-2026", "2024-2025", "2023-2024"]} />
 
       <div className="grid grid-cols-2 md:grid-cols-4 justify-between gap-4 md:gap-10 mx-2">
         <Pot num={1} teams={pots[0]} />

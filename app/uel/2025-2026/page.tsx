@@ -14,7 +14,7 @@ import { pots } from "./pots";
 export default function Page() {
 
     const router = useRouter();
-    const [season, setSeason] = useState("2024-2025");
+    const [season, setSeason] = useState("2025-2026");
     const [leagueStageDraw, setLeagueStageDraw] = useState<object[] | null>(null);
 
     const handleSeasonChange = (selSeason: string) => {
